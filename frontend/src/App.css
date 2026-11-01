@@ -1,0 +1,61 @@
+*{
+  margin: 0;
+  padding: 0; 
+  box-sizing: border-box;
+}
+
+html, body, #root{
+  /* font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6; */
+  height: 100%;
+  width: 100%;
+  background-color: #0505059f;
+  color: #fff;
+}
+
+main{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+main .left, main .right{
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 0.5rem;
+}
+
+main .left{
+  position: relative;
+}
+
+.left .code
+, .code pre code{
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: #141414;
+  margin: 0;
+  border-radius: 0.5rem;
+}
+
+main .left .review-btn{
+  background-color: #e99330;
+  color: #000;
+  position: absolute;
+  bottom: 1.5rem; 
+  right: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+}
+
+main .right{
+  background-color: #5a5a5a44;
+}
