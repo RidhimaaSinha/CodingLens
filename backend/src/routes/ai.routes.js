@@ -1,7 +1,7 @@
-import express from "express"
-import { generateCode } from "../controllers/ai.controller.js"
-const router = express.Router()
+import express from "express";
+import { generateCode } from "../controllers/ai.controller.js";
 
-router.get("/get-response", generateCode.getResponse)
+const router = express.Router();
+router.get("/get-response", generateCode);
 
-export default router 
+export default router;
