@@ -1,41 +1,55 @@
-import { useState, useEffect } from 'react'
-// import heroImg from './assets/hero.png'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from './assets/vite.svg'
-import "prismjs/themes/prism-tomorrow.css"
-import prism from "prismjs"
+import { useState } from "react";
+import "prismjs/themes/prism-tomorrow.css";
+import prism from "prismjs";
+import EditorModule from "react-simple-code-editor";
+import "./App.css";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/github-dark.css";
+import axios from "axios";
+import Markdown from "react-markdown"
 
-import './App.css'
+const Editor = EditorModule.default?.default ?? EditorModule.default ?? EditorModule;
 
 function App() {
-
-  useEffect(() => {
-    prism.highlightAll()
-  }, [])
-
-  return (
-    <>
-      <main>
-        <div className="left">
-          <div className="code">
-{/*             work on this code snippet----
-            <pre>
-              <code className="language-javascript">
-{`function sum(){
+  const [code, setCode] = useState(`function add(a, b) {
   return 1 + 1;
-}`}
-              </code>
-            </pre> */}
+}`);
+  const [review, setReview] = useState(``);
 
-
-          </div>
-          <div className="review-btn">Review</div>
-        </div>
-
-        <div className="right"></div>
-      </main>
-    </>
-  )
+async function reviewCode(){
+  const response = await axios.post("http://localhost:3000/ai/get-response", {code})
+  console.log(response.data)
+  setReview(response.data)
 }
 
-export default App
+  return (
+    <main>
+      <div className="left">
+        <div className="code">
+          <Editor
+            value={code}
+            onValueChange={setCode}
+            highlight={(value) =>
+              prism.highlight(value, prism.languages.javascript, "javascript")
+            }
+            padding={12}
+            style={{
+              fontFamily: '"Fira Code", "Fira Mono", monospace',
+              fontSize: 16,
+              minHeight: "100%",
+            }}
+          />
+        </div>
+        <button className="review-btn" onClick={reviewCode}>
+          Review
+        </button>
+      </div>
+
+      <div className="right">
+        <Markdown rehypePlugins={[rehypeHighlight]}>{review}</Markdown>
+      </div>
+    </main>
+  );
+}
+
+export default App;
