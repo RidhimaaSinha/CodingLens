@@ -7,15 +7,35 @@
 html, body, #root {
   height: 100%;
   width: 100%;
-  background-color: #050505;
+  background-color: #181717;
   color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+  font-family: "Geist", system-ui, sans-serif;
+}
+
+pre, code {
+  font-family: "Geist Mono", monospace;
+}
+
+.section {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.02rem;
+  padding: 1rem;
+  background-color: #ffa237e0;
+  color: #000;
+  box-shadow: 0 0 10px #b1ada8e0;
 }
 
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  height: 100%;
+  height: 90%;
   width: 100%;
   padding: 1.5rem;
 }
@@ -33,19 +53,20 @@ main .left {
 }
 
 main .right {
-  background-color: #5a5a5a44;
+  background-color: #27181844;
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
+  color: #fff;
   overflow: auto;
+  box-shadow: inset 0 0 5px #f7bd71e3;
 }
 
 .left .code {
-  height: 100%;
+  height: 92%;
   width: 100%;
   overflow: auto;
-  background-color: #080808;
+  background-color: #363636;
   border-radius: 0.5rem;
-  box-shadow: 0 0 0.1rem 0.1rem #585858;
 }
 
 main .left .review-btn {
@@ -60,3 +81,49 @@ main .left .review-btn {
   cursor: pointer;
   font-weight: 600;
 }
+
+main .left .review-btn:hover {
+  background-color: #c77a1c;
+}
+
+.right {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 24px;
+  line-height: 1.6;
+  text-align: left
+}
+
+.right h2 { margin: 1em 0 0.3em; color: #f5bc7c }
+.right h3{ margin: 1em 0 0.5em; color: #e0dfde }
+.right ul, .right ol { padding-left: 1.4em; }
+.right li { margin: 0.3em 0; }
+
+.right pre {
+  background: #0d1117;
+  border-radius: 8px;
+  padding: 0.3rem;
+  overflow-x: auto;
+  font-size: 0.75rem;
+}
+
+code {
+    font-size: 0.7rem;
+    line-height: 125%;
+    padding: 2px 5px;
+    background: var(--code-bg);
+}
+
+.right table { 
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0; 
+    font-size: 0.75rem; }
+
+.right th, .right td { 
+  border: 1px solid #444; 
+  padding: 8px 12px; 
+  text-align: left; }
+
+.right th { background: #1f1f23; }
+

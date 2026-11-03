@@ -7,14 +7,14 @@ import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import axios from "axios";
 import Markdown from "react-markdown"
-
+import remarkGfm from "remark-gfm"
 const Editor = EditorModule.default?.default ?? EditorModule.default ?? EditorModule;
 
 function App() {
   const [code, setCode] = useState(`function add(a, b) {
   return 1 + 1;
 }`);
-  const [review, setReview] = useState(``);
+  const [review, setReview] = useState(`Your results appear here`);
 
 async function reviewCode(){
   const response = await axios.post("http://localhost:3000/ai/get-response", {code})
@@ -23,8 +23,14 @@ async function reviewCode(){
 }
 
   return (
+    <>
+    <div className="section">CODINGLENS : Review Smarter, Ship Cleaner</div>
     <main>
       <div className="left">
+        <div className="heading" style={{ fontSize: "1.2rem", color: "#fff", 
+          paddingBottom: "1rem", fontWeight: "bold"}}>
+          Paste your code below
+        </div>
         <div className="code">
           <Editor
             value={code}
@@ -46,9 +52,12 @@ async function reviewCode(){
       </div>
 
       <div className="right">
-        <Markdown rehypePlugins={[rehypeHighlight]}>{review}</Markdown>
-      </div>
+        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+          {review}
+        </Markdown>
+</div>
     </main>
+    </>
   );
 }
 
